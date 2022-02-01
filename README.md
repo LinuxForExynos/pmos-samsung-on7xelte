@@ -1,6 +1,7 @@
 # postmarketOS Device Trees for on7xelte
 ## How to use:
-#### PLEASE CHANGE ALL DIRECTORIES IN THIS README NAMED `$pmos` TO YOUR POSTMARKETOS SOURCE DIRECTORY (i.e. The directory you gave pmbootstrap init when it asked for a directory. Most commonly /home/yourusername/.local/var/pmbootstrap/)
+#### PLEASE CHANGE ALL THINGS IN THIS REPO WHICH USE THE VARIABLE `$pmos` TO YOUR POSTMARKETOS SOURCE DIRECTORY (i.e. The directory you gave pmbootstrap init when it asked for a directory. Most commonly /home/yourusername/.local/var/pmbootstrap/. To put it in the scripts, you may do something like `pmos=/home/user/pmos`. For commands given below, just replace them with the directory)
+### Either use the auto.sh file or follow below instructions:
 1. Download the folders, either by downloading the zip or cloning it.
 2. Do `pmbootstrap init` with the following parameters:
 
