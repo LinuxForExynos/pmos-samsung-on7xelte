@@ -2,8 +2,8 @@
 pkgname=firmware-samsung-on7xelte
 pkgver=1
 pkgrel=0
-pkgdesc="Samsung Galaxy J7 Prime 2016 Firmware"
-url="https://gitlab.com/android_samsung_universal7870"
+pkgdesc="Samsung Galaxy J7 Prime Firmware"
+url="https://github.com/DevOtag-Open-Source/android_vendor_samsung_on7xelte"
 arch="noarch"
 license="proprietary"
 options="!check !archcheck !tracedeps pmb:cross-native"
@@ -12,10 +12,7 @@ _commit="51b221e521ff93e51c40366f0245d6815248f817"
 _repo="https://raw.githubusercontent.com/DevOtag-Open-Source/android_vendor_samsung_on7xelte/eleven/proprietary/"
 _prefix=$pkgname-$_commit
 
-_files_etc="
-bcmdhd_sta.bin
-nvram_net.txt
-"
+_files_etc="bcmdhd_sta.bin nvram_net.txt"
 
 for _file in $_files_etc; do
 	source="$source $_prefix-$_file::$_repo/etc/wifi/$_file"
