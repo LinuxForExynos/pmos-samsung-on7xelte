@@ -1,0 +1,30 @@
+# Reference: <https://postmarketos.org/devicepkg>
+pkgname=device-samsung-on7xelte
+pkgdesc="Samsung Galaxy J7 Prime 2016"
+pkgver=0.1
+pkgrel=0
+url="https://postmarketos.org"
+license="MIT"
+arch="aarch64"
+options="!check !archcheck"
+depends="
+	linux-samsung-on7xelte
+	firmware-samsung-on7xelte
+	mesa-dri-gallium
+	mkbootimg
+	postmarketos-base
+"
+makedepends="devicepkg-dev"
+source="deviceinfo"
+
+build() {
+	devicepkg_build $startdir $pkgname
+}
+
+package() {
+	devicepkg_package $startdir $pkgname
+}
+
+sha512sums="
+39cb0ce6c9fe2530dd9e3c9bf7b922cc9271c06313a60c5a0f40761c1b9e40d2f7441330ffc8ddbdf51efc87cfddc1e7d55057f3cd82bbe1c24bc4a78f5ce44e  deviceinfo
+"

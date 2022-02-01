@@ -1,0 +1,35 @@
+# Reference: <https://postmarketos.org/devicepkg>
+pkgname=firmware-samsung-on7xelte
+pkgver=1
+pkgrel=0
+pkgdesc="Samsung Galaxy J7 Prime 2016 Firmware"
+url="https://gitlab.com/android_samsung_universal7870"
+arch="noarch"
+license="proprietary"
+options="!check !archcheck !tracedeps pmb:cross-native"
+
+_commit="51b221e521ff93e51c40366f0245d6815248f817"
+_repo="https://raw.githubusercontent.com/DevOtag-Open-Source/android_vendor_samsung_on7xelte/eleven/proprietary/"
+_prefix=$pkgname-$_commit
+
+_files_etc="
+bcmdhd_sta.bin
+nvram_net.txt
+"
+
+for _file in $_files_etc; do
+	source="$source $_prefix-$_file::$_repo/etc/wifi/$_file"
+done
+
+package() {
+	local file
+	for file in $_files_etc; do
+		install -Dm644 "$srcdir/$_prefix-$file" \
+		"$pkgdir/lib/firmware/postmarketos/$file"
+	done
+
+}
+sha512sums="
+fa250eecbbea53e0a5dbe8317e9a40ee189d4f016122fedff93d299cd799b8f95761643ce4042709a83705189348cf5d5b5bcf74acbeb7d84dc30ec3a62ee6c5  firmware-samsung-on7xelte-51b221e521ff93e51c40366f0245d6815248f817-bcmdhd_sta.bin
+183fa0fc0bb87602154d23b6fcaf699f0556919b4a9625ff83df4ba2514beb79a1abcb4fb7d2d18e2d57bc726caea579715c377225c7efffb03a65fa5aa2ab56  firmware-samsung-on7xelte-51b221e521ff93e51c40366f0245d6815248f817-nvram_net.txt
+"
