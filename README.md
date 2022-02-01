@@ -43,4 +43,4 @@ rm -rf $pmos/cache_git/pmaports/devices/testing/device-samsung-on7xelte
 10. To finally copy over the files to your phone, first copy the files to some directory with the `fetchexport.sh` file given. Remember to change the $pmos dir to your postmarketOS source directory (i.e. the directory you gave pmbootstrap while doing `pmbootstrap init`). 
 11. Follow instructions given here to flash it: https://forum.xda-developers.com/t/dev-linux-alpha-build-released-postmarketos-for-g610f.4392165/
 
-Contributions are welcome. Please test it before making a pull as we have only 2 people handling the whole testing situation and have our own stuff to do. :)
+Contributions are welcome. Please make the pull in the `next` branch. Please test it before making a pull as we have only 2 people handling the whole testing situation and have our own stuff to do. :)
