@@ -30,11 +30,11 @@ sudo cp dtb/*.dtb $pmos/chroot_native/home/pmos/dtb
 echo " "
 echo "Copying Source Trees"
 echo " "
-rm -rf $pmos/cache_git/pmaports/devices/testing/linux-samsung-on7xelte
-rm -rf $pmos/cache_git/pmaports/devices/testing/device-samsung-on7xelte
-cp -r linux-samsung-on7xelte $pmos/cache_git/pmaports/devices/testing/
-cp -r device-samsung-on7xelte $pmos/cache_git/pmaports/devices/testing/
-cp -r firmware-samsung-on7xelte $pmos/cache_git/pmaports/devices/testing/
+rm -rf $pmos/cache_git/pmaports/device/testing/linux-samsung-on7xelte
+rm -rf $pmos/cache_git/pmaports/device/testing/device-samsung-on7xelte
+cp -r linux-samsung-on7xelte $pmos/cache_git/pmaports/device/testing/
+cp -r device-samsung-on7xelte $pmos/cache_git/pmaports/device/testing/
+cp -r firmware-samsung-on7xelte $pmos/cache_git/pmaports/device/testing/
 
 echo " "
 echo "Doing Checksums"
