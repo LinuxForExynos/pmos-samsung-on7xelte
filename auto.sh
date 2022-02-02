@@ -21,11 +21,6 @@ pmos='/home/$(whoami)/.local/var/pmbootstrap/'
 
 echo " "
 echo "You will be asked for SUDO/DOAS password"
-echo " "
-echo "Copying DTBs"
-echo " "
-pmbootstrap chroot -r -- mkdir -p /home/pmos/dtb
-sudo cp dtb/*.dtb $pmos/chroot_native/home/pmos/dtb
 
 echo " "
 echo "Copying Source Trees"
