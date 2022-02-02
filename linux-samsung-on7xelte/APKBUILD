@@ -40,7 +40,6 @@ build() {
 		KBUILD_BUILD_VERSION="$((pkgrel + 1 ))-postmarketOS"
 
 	# Master DTB (deviceinfo_bootimg_qcdt)
-	# bro wtf? TODO: Fix dtb at https://github.com/DevOtag-Open-Source/android_kernel_samsung_exynos7870/blob/eleven/arch/arm64/boot/dts/Makefile
 	dtbTool-exynos -o "$_outdir/arch/$_carch/boot"/dt.img \
 		$(find "$_outdir/arch/$_carch/boot/dts/" -name *on7xelte*.dtb)
 }
