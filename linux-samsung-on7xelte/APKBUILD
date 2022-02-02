@@ -23,6 +23,8 @@ source="
 	gcc7-give-up-on-ilog2-const-optimizations.patch
 	gcc8-fix-put-user.patch
 	gcc10-extern_YYLOC_global_declaration.patch
+	01-fix-vmm-blob-include.patch
+	02-fix-usb-gadget-random-mac.patch
 "
 builddir="$srcdir/$_repository-$_commit"
 _outdir="out"
@@ -38,6 +40,7 @@ build() {
 		KBUILD_BUILD_VERSION="$((pkgrel + 1 ))-postmarketOS"
 
 	# Master DTB (deviceinfo_bootimg_qcdt)
+	# bro wtf? TODO: Fix dtb at https://github.com/DevOtag-Open-Source/android_kernel_samsung_exynos7870/blob/eleven/arch/arm64/boot/dts/Makefile
 	dtbTool-exynos -o "$_outdir/arch/$_carch/boot"/dt.img \
 		$(find "/home/pmos/dtb" -name on7xelte*.dtb)
 }
@@ -55,4 +58,6 @@ a6526ece102777c808941ba0ecc8175688320f2f23b718f25b4d39de3b6200d97c5b9dc323eacb5f
 77eba606a71eafb36c32e9c5fe5e77f5e4746caac292440d9fb720763d766074a964db1c12bc76fe583c5d1a5c864219c59941f5e53adad182dbc70bf2bc14a7  gcc7-give-up-on-ilog2-const-optimizations.patch
 197d40a214ada87fcb2dfc0ae4911704b9a93354b75179cd6b4aadbb627a37ec262cf516921c84a8b1806809b70a7b440cdc8310a4a55fca5d2c0baa988e3967  gcc8-fix-put-user.patch
 2b48f1bf0e3f70703d2cdafc47d5e615cc7c56c70bec56b2e3297d3fa4a7a1321d649a8679614553dde8fe52ff1051dae38d5990e3744c9ca986d92187dcdbeb  gcc10-extern_YYLOC_global_declaration.patch
+23bf8ef0ad38b38ffa9ddfdee76a32c43b021169c6db6f5b733fd6434169f7c7bb27cdb1232be89475f34f9053211d943e13f5fba565c928256b92b18d636130  01-fix-vmm-blob-include.patch
+0d56ba508408dc31961ad688f7fd960b0008851fd5729088658095417781b99962740e0c64d162a26f8389e4b4dc88e291252e7935e896fc70bf73c23150caea  02-fix-usb-gadget-random-mac.patch
 "
