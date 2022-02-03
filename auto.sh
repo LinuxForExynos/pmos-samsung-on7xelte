@@ -57,9 +57,10 @@ pmbootstrap export
 echo " "
 echo "Copying to $(pwd)"
 echo " "
-cp -rv $pmos/chroot_rootfs_samsung-on7xelte/boot/* .
-cp -rv $pmos/chroot_native/home/pmos/rootfs/samsung-on7xelte.img .
-cp -rv $pmos/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-samsung-on7xelte.zip .
+cp -rv $pmos/chroot_rootfs_samsung-on7xelte/boot/* /tmp/cirrus-ci-build/
+cp -rv $pmos/chroot_native/home/pmos/rootfs/samsung-on7xelte.img /tmp/cirrus-ci-build/
+cp -rv $pmos/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-samsung-on7xelte.zip /tmp/cirrus-ci-build/
+cp -rv $pmos/log.txt /tmp/cirrus-ci-build/
 			
 echo " "
 echo "Done! Flash with the instructions given on https://forum.xda-developers.com/t/dev-linux-alpha-build-released-postmarketos-for-g610f.4392165/"
