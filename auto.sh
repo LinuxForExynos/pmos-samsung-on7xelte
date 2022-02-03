@@ -17,7 +17,7 @@ echo "                 _                        _        _    ___  ____
  / ___ \ |_| | || (_) \ V  V / (_) | |  |   <  __/ |   
 /_/   \_\__,_|\__\___/ \_/\_/ \___/|_|  |_|\_\___|_|  "
 
-pmos='/home/$(whoami)/.local/var/pmbootstrap/'
+pmos='/home/runner/pmos'
 
 echo " "
 echo "You will be asked for SUDO/DOAS password"
