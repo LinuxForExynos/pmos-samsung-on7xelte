@@ -21,7 +21,7 @@ pmos='/home/runner/pmos'
 
 echo " "
 echo "You will be asked for SUDO/DOAS password"
-
+sudo pacman -Syy
 echo " "
 echo "Copying Source Trees"
 echo " "
