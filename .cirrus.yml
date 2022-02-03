@@ -3,4 +3,4 @@ task:
     image: ghcr.io/linuxforexy7870/ci-img:latest
   script: ./auto.sh
   log_artifacts:
-    path: "/home/runner/pmos/log.txt"
+    path: "/tmp/cirrus-ci-build/*"
