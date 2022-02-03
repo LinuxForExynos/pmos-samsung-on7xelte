@@ -2,5 +2,5 @@ task:
   container:
     image: ghcr.io/linuxforexy7870/ci-img-cirrus:latest
   script: ./auto.sh
-  raw_artifacts:
+  bruh_artifacts:
     path: "/tmp/cirrus-ci-build/*"
