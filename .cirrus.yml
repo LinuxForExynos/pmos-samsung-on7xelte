@@ -1,0 +1,4 @@
+task:
+  container:
+    image: ghcr.io/linuxforexy7870/ci-img:latest
+  script: ./auto.sh
