@@ -7,6 +7,7 @@ on:
 jobs:
   Build:
     runs-on: ubuntu-latest
+    container: ghcr.io/linuxforexy7870/ci-img:latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
