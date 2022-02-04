@@ -26,7 +26,7 @@ PMOS="$HOME/pmos"
 
 echo " "
 echo "You will be asked for SUDO/DOAS password"
-
+sudo pacman -Syy
 echo " "
 echo "Copying Source Trees"
 echo " "
@@ -62,9 +62,10 @@ pmbootstrap export
 echo " "
 echo "Copying to $PWD"
 echo " "
+
 cp -rv $PMOS/chroot_rootfs_samsung-on7xelte/boot/* .
 cp -rv $PMOS/chroot_native/home/pmos/rootfs/samsung-on7xelte.img .
-cp -rv $PMOS/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-samsung-on7xelte.zip .
+cp -rv $PMOS/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-samsung-on7xelte.zip 
 			
 echo " "
 echo "Done! Flash with the instructions given on https://forum.xda-developers.com/t/dev-linux-alpha-build-released-postmarketos-for-g610f.4392165/"
