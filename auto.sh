@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 echo " _     _                  _____         _____ ___ _____ ___  
 | |   (_)_ __  _   ___  _|  ___|__  _ _|___  ( _ )___  / _ \ 
 | |   | | '_ \| | | \ \/ / |_ / _ \| '__| / // _ \  / / | | |
@@ -17,7 +17,12 @@ echo "                 _                        _        _    ___  ____
  / ___ \ |_| | || (_) \ V  V / (_) | |  |   <  __/ |   
 /_/   \_\__,_|\__\___/ \_/\_/ \___/|_|  |_|\_\___|_|  "
 
-pmos='/tmp/cirrus-ci-build'
+if [ "$CI" = "true" ]; then
+    echo "\nCI Process detected";
+    HOME="/home/runner";
+fi
+
+PMOS="$HOME/pmos"
 
 echo " "
 echo "You will be asked for SUDO/DOAS password"
@@ -25,11 +30,11 @@ sudo pacman -Syy
 echo " "
 echo "Copying Source Trees"
 echo " "
-rm -rf $pmos/cache_git/pmaports/device/testing/linux-samsung-on7xelte
-rm -rf $pmos/cache_git/pmaports/device/testing/device-samsung-on7xelte
-cp -r linux-samsung-on7xelte $pmos/cache_git/pmaports/device/testing/
-cp -r device-samsung-on7xelte $pmos/cache_git/pmaports/device/testing/
-cp -r firmware-samsung-on7xelte $pmos/cache_git/pmaports/device/testing/
+rm -rf $PMOS/cache_git/pmaports/device/testing/linux-samsung-on7xelte
+rm -rf $PMOS/cache_git/pmaports/device/testing/device-samsung-on7xelte
+cp -r linux-samsung-on7xelte $PMOS/cache_git/pmaports/device/testing/
+cp -r device-samsung-on7xelte $PMOS/cache_git/pmaports/device/testing/
+cp -r firmware-samsung-on7xelte $PMOS/cache_git/pmaports/device/testing/
 
 echo " "
 echo "Doing Checksums"
@@ -55,12 +60,12 @@ echo " "
 pmbootstrap export
 
 echo " "
-echo "Copying to $(pwd)"
+echo "Copying to $PWD"
 echo " "
-cp -rv $pmos/chroot_rootfs_samsung-on7xelte/boot/* /tmp/cirrus-ci-build/
-cp -rv $pmos/chroot_native/home/pmos/rootfs/samsung-on7xelte.img /tmp/cirrus-ci-build/
-cp -rv $pmos/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-samsung-on7xelte.zip /tmp/cirrus-ci-build/
-cp -rv $pmos/log.txt /tmp/cirrus-ci-build/
+
+cp -rv $PMOS/chroot_rootfs_samsung-on7xelte/boot/* .
+cp -rv $PMOS/chroot_native/home/pmos/rootfs/samsung-on7xelte.img .
+cp -rv $PMOS/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-samsung-on7xelte.zip 
 			
 echo " "
 echo "Done! Flash with the instructions given on https://forum.xda-developers.com/t/dev-linux-alpha-build-released-postmarketos-for-g610f.4392165/"
