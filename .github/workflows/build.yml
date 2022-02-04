@@ -1,0 +1,16 @@
+name: Build pmOS
+on: 
+  push:
+  pull_request:
+  pull_request_review:
+  workflow_dispatch:
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    container: ghcr.io/linuxforexy7870/ci-img:latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "Working directory $PWD"
+      - run: ./auto.sh
