@@ -1,0 +1,9 @@
+stages:
+  - build
+
+build-job:       # This job runs in the build stage, which runs first.
+  stage: build
+  image: ghcr.io/linuxforexy7870/ci-img:latest
+  script:
+    - echo "Started CI on $CI_COMMIT_BRANCH for $CI_COMMIT_MESSAGE in $CI_JOB_IMAGE"
+    - ./auto.sh
