@@ -22,7 +22,7 @@ if [ "$CI" = "true" ]; then
     HOME="/home/runner";
 fi
 
-PMOS="$HOME/pmos"
+CI_PMBTSP="$HOME/pmos"
 
 echo " "
 echo "You will be asked for SUDO/DOAS password"
@@ -30,11 +30,11 @@ sudo pacman -Syy
 echo " "
 echo "Copying Source Trees"
 echo " "
-rm -rf $PMOS/cache_git/pmaports/device/testing/linux-samsung-on7xelte
-rm -rf $PMOS/cache_git/pmaports/device/testing/device-samsung-on7xelte
-cp -r linux-samsung-on7xelte $PMOS/cache_git/pmaports/device/testing/
-cp -r device-samsung-on7xelte $PMOS/cache_git/pmaports/device/testing/
-cp -r firmware-samsung-on7xelte $PMOS/cache_git/pmaports/device/testing/
+rm -rf $CI_PMBTSP/cache_git/pmaports/device/testing/linux-samsung-on7xelte
+rm -rf $CI_PMBTSP/cache_git/pmaports/device/testing/device-samsung-on7xelte
+cp -r linux-samsung-on7xelte $CI_PMBTSP/cache_git/pmaports/device/testing/
+cp -r device-samsung-on7xelte $CI_PMBTSP/cache_git/pmaports/device/testing/
+cp -r firmware-samsung-on7xelte $CI_PMBTSP/cache_git/pmaports/device/testing/
 
 echo " "
 echo "Doing Checksums"
@@ -54,18 +54,15 @@ echo " "
 echo "Exporting"
 echo " "
 pmbootstrap install --android-recovery-zip --password 12345
-echo " "
-echo "A password will be asked to be given, please use any alphanumeric kind. Please don't use symbols."
-echo " "
 pmbootstrap export
 
 echo " "
 echo "Copying to $PWD"
 echo " "
 
-cp -rv $PMOS/chroot_rootfs_samsung-on7xelte/boot/* .
-cp -rv $PMOS/chroot_native/home/pmos/rootfs/samsung-on7xelte.img .
-cp -rv $PMOS/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-samsung-on7xelte.zip 
+cp -rv $CI_PMBTSP/chroot_rootfs_samsung-on7xelte/boot/* .
+cp -rv $CI_PMBTSP/chroot_native/home/pmos/rootfs/samsung-on7xelte.img .
+cp -rv $CI_PMBTSP/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-samsung-on7xelte.zip 
 			
 echo " "
 echo "Done! Flash with the instructions given on https://forum.xda-developers.com/t/dev-linux-alpha-build-released-postmarketos-for-g610f.4392165/"
