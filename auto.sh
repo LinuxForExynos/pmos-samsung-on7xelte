@@ -27,7 +27,7 @@ CI_PMBTSP="$HOME/pmos"
 
 echo " "
 echo "You will be asked for SUDO/DOAS password"
-sudo pacman -Syy
+sudo pacman -Syu --noconfirm
 echo " "
 echo "Copying Source Trees"
 echo " "
