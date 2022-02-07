@@ -68,4 +68,3 @@ cp -rv $CI_PMBTSP/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery
 echo " "
 echo "Done! Flash with the instructions given on https://forum.xda-developers.com/t/dev-linux-alpha-build-released-postmarketos-for-g610f.4392165/"
 echo " "
-
