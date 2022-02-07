@@ -19,11 +19,13 @@ echo "                 _                        _        _    ___  ____
 
 if [ "$CI" = "true" ]; then
     echo "\nCI Process detected";
-    HOME="/home/runner";
+    CI_PMBTSP="/root/.local/var/pmbootstrap"
     CI_PM_EXTRA_ARGS="--as-root";
+else 
+    CI_PMBTSP="$HOME/.local/var/pmbootstrap";
 fi
+echo "Using installation $CI_PMBTSP"
 
-CI_PMBTSP="$HOME/pmos"
 
 echo " "
 echo "You will be asked for SUDO/DOAS password"
