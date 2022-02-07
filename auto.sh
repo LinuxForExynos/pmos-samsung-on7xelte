@@ -20,6 +20,7 @@ echo "                 _                        _        _    ___  ____
 if [ "$CI" = "true" ]; then
     echo "\nCI Process detected";
     HOME="/home/runner";
+    CI_PM_EXTRA_ARGS="--as-root";
 fi
 
 CI_PMBTSP="$HOME/pmos"
@@ -39,22 +40,22 @@ cp -r firmware-samsung-on7xelte $CI_PMBTSP/cache_git/pmaports/device/testing/
 echo " "
 echo "Doing Checksums"
 echo " "
-pmbootstrap checksum linux-samsung-on7xelte 
-pmbootstrap checksum firmware-samsung-on7xelte
-pmbootstrap checksum device-samsung-on7xelte
+pmbootstrap $CI_PM_EXTRA_ARGS checksum linux-samsung-on7xelte 
+pmbootstrap $CI_PM_EXTRA_ARGS checksum firmware-samsung-on7xelte
+pmbootstrap $CI_PM_EXTRA_ARGS checksum device-samsung-on7xelte
 
 echo " "
 echo "Building All"
 echo " "
-pmbootstrap build linux-samsung-on7xelte --force 
-pmbootstrap build firmware-samsung-on7xelte --force 
-pmbootstrap build device-samsung-on7xelte --force
+pmbootstrap $CI_PM_EXTRA_ARGS build linux-samsung-on7xelte --force 
+pmbootstrap $CI_PM_EXTRA_ARGS build firmware-samsung-on7xelte --force 
+pmbootstrap $CI_PM_EXTRA_ARGS build device-samsung-on7xelte --force
 
 echo " "
 echo "Exporting"
 echo " "
-pmbootstrap install --android-recovery-zip --password 12345
-pmbootstrap export
+pmbootstrap $CI_PM_EXTRA_ARGS install --android-recovery-zip --password 12345
+pmbootstrap $CI_PM_EXTRA_ARGS export
 
 echo " "
 echo "Copying to $PWD"
