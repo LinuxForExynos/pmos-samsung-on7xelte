@@ -13,6 +13,13 @@ license="GPL-2.0-only"
 options="!strip !check !tracedeps pmb:cross-native"
 makedepends="bash bc bison devicepkg-dev flex openssl-dev perl dtbtool-exynos"
 
+# Compiler: GCC 6 (doesn't boot when compiled with newer versions)
+if [ "${CC:0:5}" != "gcc6-" ]; then
+	CC="gcc6-$CC"
+	HOSTCC="gcc6-gcc"
+	CROSS_COMPILE="gcc6-$CROSS_COMPILE"
+fi
+
 # Source
 _repository="android_kernel_samsung_exynos7870-3.18.114"
 _commit="e51583ae735eb2f6501d50a4fb17ade5999bc2ca"
