@@ -2,7 +2,7 @@
 # Kernel config based on: arch/arm64/configs/(CHANGEME!)
 
 pkgname=linux-samsung-on7xelte
-pkgver=3.18.14
+pkgver=3.18.140
 pkgrel=0
 pkgdesc="Samsung Galaxy J7 Prime Kernel"
 arch="aarch64"
@@ -14,15 +14,12 @@ options="!strip !check !tracedeps pmb:cross-native"
 makedepends="bash bc bison devicepkg-dev flex openssl-dev perl dtbtool-exynos"
 
 # Source
-_repository="android_kernel_samsung_exynos7870"
-_commit="cea077cb774b8be539f79da6eb396fd5ac985020"
+_repository="Android-12-Kernel-Exynos7870"
+_commit="6b44e67420414f3fd6e20c77f328add1dcea55f7"
 _config="config-$_flavor.$arch"
 source="
-	$pkgname-$_commit.tar.gz::https://github.com/DevOtag-Open-Source/$_repository/archive/$_commit.tar.gz
+	$pkgname-$_commit.tar.gz::https://github.com/LinuxForExy7870/$_repository/archive/$_commit.tar.gz
 	$_config
-	gcc7-give-up-on-ilog2-const-optimizations.patch
-	gcc8-fix-put-user.patch
-	gcc10-extern_YYLOC_global_declaration.patch
 	01-fix-vmm-blob-include.patch
 	02-fix-usb-gadget-random-mac.patch
 "
