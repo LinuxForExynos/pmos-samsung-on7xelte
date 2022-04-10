@@ -19,55 +19,54 @@ echo "                 _                        _        _    ___  ____
 
 if [ "$CI" = "true" ]; then
     echo "\nCI Process detected";
-    HOME="/home/runner";
+    CI_PMBTSP="/root/.local/var/pmbootstrap"
+    CI_PM_EXTRA_ARGS="--as-root";
+else 
+    CI_PMBTSP="$HOME/.local/var/pmbootstrap";
 fi
+echo "Using installation $CI_PMBTSP"
 
-PMOS="$HOME/pmos"
 
 echo " "
 echo "You will be asked for SUDO/DOAS password"
-sudo pacman -Syy
+sudo pacman -Syu --noconfirm
 echo " "
 echo "Copying Source Trees"
 echo " "
-rm -rf $PMOS/cache_git/pmaports/device/testing/linux-samsung-on7xelte
-rm -rf $PMOS/cache_git/pmaports/device/testing/device-samsung-on7xelte
-cp -r linux-samsung-on7xelte $PMOS/cache_git/pmaports/device/testing/
-cp -r device-samsung-on7xelte $PMOS/cache_git/pmaports/device/testing/
-cp -r firmware-samsung-on7xelte $PMOS/cache_git/pmaports/device/testing/
+rm -rf $CI_PMBTSP/cache_git/pmaports/device/testing/linux-samsung-on7xelte
+rm -rf $CI_PMBTSP/cache_git/pmaports/device/testing/device-samsung-on7xelte
+cp -r linux-samsung-on7xelte $CI_PMBTSP/cache_git/pmaports/device/testing/
+cp -r device-samsung-on7xelte $CI_PMBTSP/cache_git/pmaports/device/testing/
+cp -r firmware-samsung-on7xelte $CI_PMBTSP/cache_git/pmaports/device/testing/
 
 echo " "
 echo "Doing Checksums"
 echo " "
-pmbootstrap checksum linux-samsung-on7xelte 
-pmbootstrap checksum firmware-samsung-on7xelte
-pmbootstrap checksum device-samsung-on7xelte
+pmbootstrap $CI_PM_EXTRA_ARGS checksum linux-samsung-on7xelte 
+pmbootstrap $CI_PM_EXTRA_ARGS checksum firmware-samsung-on7xelte
+pmbootstrap $CI_PM_EXTRA_ARGS checksum device-samsung-on7xelte
 
 echo " "
 echo "Building All"
 echo " "
-pmbootstrap build linux-samsung-on7xelte --force 
-pmbootstrap build firmware-samsung-on7xelte --force 
-pmbootstrap build device-samsung-on7xelte --force
+pmbootstrap $CI_PM_EXTRA_ARGS build linux-samsung-on7xelte --force 
+pmbootstrap $CI_PM_EXTRA_ARGS build firmware-samsung-on7xelte --force 
+pmbootstrap $CI_PM_EXTRA_ARGS build device-samsung-on7xelte --force
 
 echo " "
 echo "Exporting"
 echo " "
-pmbootstrap install --android-recovery-zip --password 12345
-echo " "
-echo "A password will be asked to be given, please use any alphanumeric kind. Please don't use symbols."
-echo " "
-pmbootstrap export
+pmbootstrap $CI_PM_EXTRA_ARGS install --android-recovery-zip --password 12345
+pmbootstrap $CI_PM_EXTRA_ARGS export
 
 echo " "
 echo "Copying to $PWD"
 echo " "
 
-cp -rv $PMOS/chroot_rootfs_samsung-on7xelte/boot/* .
-cp -rv $PMOS/chroot_native/home/pmos/rootfs/samsung-on7xelte.img .
-cp -rv $PMOS/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-samsung-on7xelte.zip 
+cp -rv $CI_PMBTSP/chroot_rootfs_samsung-on7xelte/boot/* .
+cp -rv $CI_PMBTSP/chroot_native/home/pmos/rootfs/samsung-on7xelte.img .
+cp -rv $CI_PMBTSP/chroot_buildroot_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-samsung-on7xelte.zip 
 			
 echo " "
 echo "Done! Flash with the instructions given on https://forum.xda-developers.com/t/dev-linux-alpha-build-released-postmarketos-for-g610f.4392165/"
 echo " "
-
