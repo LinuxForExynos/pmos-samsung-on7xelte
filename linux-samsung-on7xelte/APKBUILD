@@ -15,7 +15,7 @@ makedepends="bash bc bison devicepkg-dev flex openssl-dev perl dtbtool-exynos"
 
 # Source
 _repository="Android-12-Kernel-Exynos7870"
-_commit="6b44e67420414f3fd6e20c77f328add1dcea55f7"
+_commit="dd714bdebd1ab9dcf2f9482d8565c688c106114c"
 _config="config-$_flavor.$arch"
 source="
 	$pkgname-$_commit.tar.gz::https://github.com/LinuxForExy7870/$_repository/archive/$_commit.tar.gz
