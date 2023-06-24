@@ -1,27 +1,43 @@
 # Reference: <https://postmarketos.org/vendorkernel>
-# Kernel config based on: arch/arm64/configs/(CHANGEME!)
+# Kernel config based on: arch/arm64/configs/on7xelteswa_00_defconfig
 
 pkgname=linux-samsung-on7xelte
-pkgver=3.18.140
+pkgver=3.18.14
 pkgrel=0
-pkgdesc="Samsung Galaxy J7 Prime Kernel"
+pkgdesc="Samsung Galaxy J7 Prime kernel fork"
 arch="aarch64"
 _carch="arm64"
 _flavor="samsung-on7xelte"
 url="https://kernel.org"
 license="GPL-2.0-only"
 options="!strip !check !tracedeps pmb:cross-native"
-makedepends="bash bc bison devicepkg-dev flex openssl-dev perl dtbtool-exynos"
+makedepends="
+	bash
+	bc
+	bison
+	devicepkg-dev
+	dtbtool-exynos
+	findutils
+	flex
+	openssl-dev
+	perl
+	gcc4
+"
+
+# Compiler: GCC 4 (doesn't boot when compiled with newer versions)
+if [ "${CC:0:5}" != "gcc4-" ]; then
+	CC="gcc4-$CC"
+	HOSTCC="gcc4-gcc"
+	CROSS_COMPILE="gcc4-$CROSS_COMPILE"
+fi
 
 # Source
-_repository="pmos_kernel_samsung_exynos7870"
-_commit="1245a9326fc61c4e211c02dce9945b839952c46e"
+_repository="android_kernel_samsung_on7xelte"
+_commit="87884e4ddab8445a233e86bfe1f50f5c72c865cd"
 _config="config-$_flavor.$arch"
 source="
-	$pkgname-$_commit.tar.gz::https://github.com/LinuxForExynos/$_repository/archive/$_commit.tar.gz
+	$pkgname-$_commit.tar.gz::https://gitlab.com/methanal/$_repository/-/archive/$_commit/$_repository-$_commit.tar.gz
 	$_config
-	01-fix-vmm-blob-include.patch
-	02-fix-usb-gadget-random-mac.patch
 "
 builddir="$srcdir/$_repository-$_commit"
 _outdir="out"
@@ -38,7 +54,7 @@ build() {
 
 	# Master DTB (deviceinfo_bootimg_qcdt)
 	dtbTool-exynos -o "$_outdir/arch/$_carch/boot"/dt.img \
-		$(find "$_outdir/arch/$_carch/boot/dts/" -name *on7xelte*.dtb)
+		$(find "$_outdir/arch/$_carch/boot/dts/" -name *exynos7870*.dtb)
 }
 
 package() {
@@ -49,11 +65,6 @@ package() {
 }
 
 sha512sums="
-a6526ece102777c808941ba0ecc8175688320f2f23b718f25b4d39de3b6200d97c5b9dc323eacb5f70371abb21b19f42117381df1a76888fafecf5fc5dc2cd78  linux-samsung-on7xelte-cea077cb774b8be539f79da6eb396fd5ac985020.tar.gz
-5d7433d07c8ccf9bfafc35d2b9ed737c0970fe6c69fd4d33d7298a1514497042a6bb3796da64e11d5adaf0944077886ac330145f81f0b46e4d3c893a339afa48  config-samsung-on7xelte.aarch64
-77eba606a71eafb36c32e9c5fe5e77f5e4746caac292440d9fb720763d766074a964db1c12bc76fe583c5d1a5c864219c59941f5e53adad182dbc70bf2bc14a7  gcc7-give-up-on-ilog2-const-optimizations.patch
-197d40a214ada87fcb2dfc0ae4911704b9a93354b75179cd6b4aadbb627a37ec262cf516921c84a8b1806809b70a7b440cdc8310a4a55fca5d2c0baa988e3967  gcc8-fix-put-user.patch
-2b48f1bf0e3f70703d2cdafc47d5e615cc7c56c70bec56b2e3297d3fa4a7a1321d649a8679614553dde8fe52ff1051dae38d5990e3744c9ca986d92187dcdbeb  gcc10-extern_YYLOC_global_declaration.patch
-23bf8ef0ad38b38ffa9ddfdee76a32c43b021169c6db6f5b733fd6434169f7c7bb27cdb1232be89475f34f9053211d943e13f5fba565c928256b92b18d636130  01-fix-vmm-blob-include.patch
-0d56ba508408dc31961ad688f7fd960b0008851fd5729088658095417781b99962740e0c64d162a26f8389e4b4dc88e291252e7935e896fc70bf73c23150caea  02-fix-usb-gadget-random-mac.patch
+3551a1707b93f6d4acb23ca3736d5c220b8bcf0538380b58b3d23dfa8f132cb9cc73d2a297819fb18cd66e5503a60c09db55e208c8f9489f47289265780d5603  linux-samsung-on7xelte-87884e4ddab8445a233e86bfe1f50f5c72c865cd.tar.gz
+f3c776f73e61673c2c8b4ae92a5badf1c5606212534b43d989980a83725636f47033575fe17f084e6b06f1371b1d3f7ebbdb02fe098b3d08e339c394f2a08506  config-samsung-on7xelte.aarch64
 "

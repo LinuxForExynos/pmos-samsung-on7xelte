@@ -7,7 +7,11 @@ url="https://postmarketos.org"
 license="MIT"
 arch="aarch64"
 options="!check !archcheck"
-depends="linux-samsung-on7xelte firmware-samsung-on7xelte postmarketos-base mesa-dri-gallium mkbootimg"
+depends="
+	linux-samsung-on7xelte
+	mkbootimg
+	postmarketos-base
+"
 makedepends="devicepkg-dev"
 source="deviceinfo"
 
@@ -20,5 +24,5 @@ package() {
 }
 
 sha512sums="
-21bfbc4e2c5dfd33cdc5d52f708e29d49516e0643e7bbaf179a65382e60b62139492144ef6f3efcc45afedc0e583e9cc73a3e0029108ad646587662e017e03a9  deviceinfo
+d36b1a170ec15d883f428738bda94e1eadc8b58dd4524a9d4573399ae69c99d58c09066b53c290c52bd9e21220d40c1e328ccfd8a79a1bb4ba4c197e90088adc  deviceinfo
 "
